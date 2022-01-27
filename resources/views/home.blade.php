@@ -6,7 +6,7 @@
     <h1 class="text-center m-5">
       Tanti fumetti a tua scelta: Scegli, Clicca, Compra
     </h1>
-    <p> Clicca sul fumetto per vedere la descrizione</p>
+    <h4 class="text-center"> Clicca sul fumetto per la descrizione</h4>
   </div>
 
   <div class="row d-flex">
