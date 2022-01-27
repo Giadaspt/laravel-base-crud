@@ -26,7 +26,7 @@ class Comic extends Migration
             $table->string('type', 150);
             $table->string('slug', 150);
 
-            $table->timestamp('comics');
+            $table->timestamps();
         });
     }
 
