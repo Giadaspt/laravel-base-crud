@@ -14,7 +14,9 @@ class ComicController extends Controller
      */
     public function index()
     {
-        return view('comics.home.recource');
+        $comics = Comic::paginate(5);
+
+        return view('comics\home_resource', compact('comics'));
     }
 
     /**
@@ -44,9 +46,11 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function show(Comic $comic)
+    public function show( $id)
     {
-        //
+        $show_comics = Comic::find($id);
+
+        return view('comics.show', compact('show_comics'));
     }
 
     /**
