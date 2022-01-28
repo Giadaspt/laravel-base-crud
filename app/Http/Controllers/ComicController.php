@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
@@ -49,13 +50,13 @@ class ComicController extends Controller
         // $new_comic->sale_date = $data['sale_date'];
         // $new_comic->type = $data['type'];
 
+        // $data['slug'] = $this->slgMaker($data['title']);
         $new_comic->fill($data);
-        $data['slug'] = $this.slgMaker($data['title']);
-        dd( $new_comic);
-        // $new_comic->save();
+        $new_comic->slug = $this->slgMaker($data['title']);
+        //dd( $new_comic);
+        $new_comic->save();
 
-
-        // return redirect()->route('comics.show', $new_comic);
+        return redirect()->route('comics.show', $new_comic);
         
     }
 
