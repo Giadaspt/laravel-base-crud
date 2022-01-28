@@ -26,13 +26,16 @@
             </td>
             <td>
               <button class="btn btn-warning"> 
-                <a href="#">Edit</a>  
+                <a href="{{ route('comics.edit', $comic) }}">Edit</a>  
               </button>
             </td>
             <td>
-              <button class="btn btn-danger"> 
-                <a href="#">Delete</a>  
-              </button>
+              <form action="{{ route('comics.destroy', $comic) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" class="btn-danger"  value="Delete"> 
+                   
+              </form>
             </td>
           </tr>
         @endforeach
@@ -44,6 +47,7 @@
     <button class="btn btn-primary m-4">
       <a href="{{ route('home') }}"> Indietro </a>
     </button>
+
   </div>
 
   

@@ -52,7 +52,7 @@ class ComicController extends Controller
 
         // $data['slug'] = $this->slgMaker($data['title']);
         $new_comic->fill($data);
-        $new_comic->slug = $this->slgMaker($data['title']);
+        $new_comic->slug = $this->slugMaker($data['title']);
         //dd( $new_comic);
         $new_comic->save();
 
@@ -68,10 +68,10 @@ class ComicController extends Controller
      */
     public function show($id)
     {
-        $show_comics = Comic::find($id);
+        $comics = Comic::find($id);
 
-        if($show_comics){
-            return view('comics.show', compact('show_comics'));
+        if($comics){
+            return view('comics.show', compact('comics'));
         }
         abort(404, 'Questa pagina non esiste');
     }
@@ -82,9 +82,16 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comic $comic)
+    public function edit($id)
     {
-        //
+
+        $comics = Comic::find($id);
+
+        if($comics){
+            return view('comics.edit', compact('comics'));
+        }
+        abort(404, 'Questa pagina non esiste');
+
     }
 
     /**
@@ -94,9 +101,14 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(Request $request, Comic $comics)
     {
-        //
+        $data = $request->all();
+
+        $data['slug'] = $this->slugMaker($data['title']);
+        $comics->update($data);
+
+        return redirect()->route('comics.show');
     }
 
     /**
@@ -107,11 +119,13 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 
     
-    private function slgMaker($str){
+    private function slugMaker($str){
         return Str::slug($str, '-');
     }
 }
