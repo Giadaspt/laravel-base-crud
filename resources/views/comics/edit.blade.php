@@ -36,7 +36,9 @@
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Descrizione</label>
-        <textarea class="form-control" value="{{ $comics->description}}" name="description" id="description"></textarea>
+        <textarea class="form-control"  name="description" id="description">
+          {{ $comics->description}}
+        </textarea>
       </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">

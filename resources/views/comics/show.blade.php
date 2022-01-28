@@ -7,7 +7,7 @@
   <h5 class="text-center">{{ $comics->series }}</h5>
   <div class="d-flex p-4">
     <img src="{{ $comics->thumb }}" alt="{{ $comics->title }}">
-    <p class="align-items-center p-5">{{ $comics->description }}</p>
+    <p class="align-items-center p-5">{!! $comics->description !!}</p>
   </div>
   <div class="d-flex pl-4">
     <p class="pr-2">{{ $comics->type }}</p>

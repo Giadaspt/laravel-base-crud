@@ -101,14 +101,14 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comics)
+    public function update(Request $request, Comic $comic)
     {
         $data = $request->all();
 
         $data['slug'] = $this->slugMaker($data['title']);
-        $comics->update($data);
+        $comic->update($data);
 
-        return redirect()->route('comics.show');
+        return redirect()->route('comics.show', $comic );
     }
 
     /**
