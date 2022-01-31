@@ -104,6 +104,8 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $request->validate($this->makeValidation(), $this->messageErrors());
+
         $data = $request->all();
 
         $data['slug'] = $this->slugMaker($data['title']);
@@ -156,8 +158,8 @@ class ComicController extends Controller
             "thumb.max" => "Possono essere inseriti massimo 255 caratteri ",
             "price.required" => "Il prezzo è obbligatorio",
             "sale_date.required" => "La data è obbligatoria",
-            "image.required" => "La data è obbligatoria",
-            "image.max" => "Possono essere inseriti massimo 50 caratteri ",
+            "thumb.required" => "L'immagine è obbligatoria",
+            "thumb.max" => "Possono essere inseriti massimo 50 caratteri ",
             
         ];
     }
