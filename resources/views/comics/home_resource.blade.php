@@ -2,7 +2,13 @@
 
 @section('content')
 
-  <div class="container mt-5">
+
+<div class="container mt-5">
+    @if (session('deleted'))
+      <div class="alert alert-danger text-center m-4" role="alert">
+        Il fumetto {{session('deleted')}} è stato eliminato
+      </div>
+    @endif
     <h2 class="text-center mb-4"> Lista Fumetti </h2>
     <table class="table">
       <thead>
@@ -30,10 +36,10 @@
               </button>
             </td>
             <td>
-              <form action="{{ route('comics.destroy', $comic) }}" method="POST">
+              <form onsubmit="return confirm('Confermi di voler eliminare il fumetto {{$comic->title}} ? ' )" action="{{ route('comics.destroy', $comic) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <input type="submit" class="btn-danger"  value="Delete"> 
+                <button type="submit" class="btn btn-danger"  > Delete </button>
                    
               </form>
             </td>
